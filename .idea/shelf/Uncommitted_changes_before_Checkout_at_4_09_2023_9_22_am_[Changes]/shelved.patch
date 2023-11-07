@@ -1,0 +1,194 @@
+Index: src/main/java/com/stemcraft/manager/SMLanguageManager.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.stemcraft.manager;\r\n\r\nimport java.util.HashMap;\r\nimport java.util.Map;\r\nimport java.util.Objects;\r\n\r\nimport com.stemcraft.SMConfig;\r\nimport org.apache.commons.lang.StringUtils;\r\nimport org.bukkit.ChatColor;\r\nimport org.bukkit.command.CommandSender;\r\nimport org.bukkit.entity.Player;\r\nimport com.stemcraft.feature.SMItemsAdder;\r\nimport me.clip.placeholderapi.PlaceholderAPI;\r\n\r\npublic class SMLanguageManager extends SMManager {\r\n    private Map<String, String> fallbackPhrases = new HashMap<>();\r\n    private String[] languages = {};\r\n    // Don't assign this to a value unless you wish to refactor this further.\r\n    private Map<String, SMConfig> languageConfigs = new HashMap<>() {};\r\n    private String language;\r\n    SMItemsAdder iaFeature = null;\r\n\r\n    private void registerDefaultPhrases() {\r\n        this.registerPhrase(\"CMD_NO_PERMISSION\", \":warning_red: &cYou don't have permission to use this command\");\r\n        this.registerPhrase(\"CMD_ONLY_PLAYERS\", \"This command can only be run by a player\");\r\n        this.registerPhrase(\"CMD_PLAYER_REQ_FROM_CONSOLE\", \"A player name is required when run from console\");\r\n        this.registerPhrase(\"CMD_PLAYER_NOT_FOUND\", \":warning_red: &cPlayer not found\");\r\n        this.registerPhrase(\"CMD_INVALID_OPTION\", \":warning_red: &cUnknown option\");\r\n        this.registerPhrase(\"CMD_OPTION_REQUIRED\", \":warning_red: &cAn option is required\");\r\n    }\r\n\r\n    private Boolean checkForBrokenLanguageConfig(SMConfig languageConfig) {\r\n        if (languageConfig.isLoaded() == false) {\r\n            // Should never be the case.\r\n            this.plugin.getLogger().warning(\"Language Config passed to 'checkForBrokenLanguageConfig' without loading first.\");\r\n            languageConfig.loadConfig();\r\n        }\r\n\r\n        return languageConfig.getBoolValue(\"is-valid-language-file\", false);\r\n    }\r\n\r\n    private void getLanguagesConfig() {\r\n        for (String language : languages) {\r\n            if (languageConfigs.get(language) != null) {\r\n                plugin.getLogger().config(\"Refusing to load language \" + language + \"twice.\");\r\n            }\r\n\r\n            SMConfig currentLanguageConfig = new SMConfig(this.plugin, \"lang.\" + language);\r\n            currentLanguageConfig.loadConfig();\r\n\r\n            if (checkForBrokenLanguageConfig(currentLanguageConfig)) {\r\n                languageConfigs.put(language, currentLanguageConfig);\r\n            } else {\r\n                plugin.getLogger().config(\"Invalid language selected: \" + language + \". The selected language will not be loaded.\");\r\n            }\r\n        }\r\n    }\r\n\r\n    private void initializeLanguageConfigs() {\r\n        SMConfig globalConfig = this.plugin.getConfigManager().getConfig();\r\n        // TODO: Implement arrays in SMConfig and this.\r\n        // TODO: Registering languages using a system like this is suboptimal.\r\n        String languagesSelected = globalConfig.registerValue(\"languages-enabled\", \"en\", \"Languages for SMConfig. Separate languages by a space.\");\r\n        languages = languagesSelected.split(\" \");\r\n\r\n        if (languages.length == 0) {\r\n            plugin.getLogger().config(\"No languages were selected in the 'languages-enabled' config.\");\r\n            plugin.getLogger().config(\"The default configuration will now default to 'en'.\");\r\n            plugin.getLogger().config(\"If this is not want you want, select a language in 'languages-enabled'.\");\r\n            languages = new String[] { \"en\" };\r\n        }\r\n\r\n        getLanguagesConfig();\r\n    }\r\n\r\n    @Override\r\n    public void onEnable() {\r\n        registerDefaultPhrases();\r\n\r\n        initializeLanguageConfigs();\r\n\r\n        this.iaFeature = (SMItemsAdder)this.plugin.getFeatureManager().getFeature(\"SMItemsAdder\");\r\n    }\r\n\r\n    public void registerPhrase(String key, String phrase) {\r\n        this.fallbackPhrases.put(key, phrase);\r\n    }\r\n    \r\n    public void registerPhraseMap(Map<String, String> map) {\r\n        this.fallbackPhrases.putAll(map);\r\n    }\r\n\r\n    public String getPhrase(String key) {\r\n        return this.getPhrase(key, null, null);\r\n    }\r\n\r\n    public String getPhrase(String key, Player player) {\r\n        return this.getPhrase(key, player, null);\r\n    }\r\n\r\n    public String getPhrase(String key, Map<String, String> replacements) {\r\n        return this.getPhrase(key, null, replacements);\r\n    }\r\n\r\n    public String getPhrase(String key, Player player, Map<String, String> replacements) {\r\n        String phrase = languageConfigs.get(language).getValue(key, \"\");\r\n\r\n        if(this.iaFeature != null) {\r\n            phrase = this.iaFeature.formatString(player, phrase);\r\n        }\r\n        \r\n        if (replacements != null) {\r\n            for (Map.Entry<String, String> entry : replacements.entrySet()) {\r\n                String searchKey = \"%\" + entry.getKey() + \"%\";\r\n                String replacement = entry.getValue();\r\n                phrase = phrase.replace(searchKey, replacement);\r\n            }\r\n        }\r\n\r\n        if(player != null) {\r\n            phrase = PlaceholderAPI.setPlaceholders(player, phrase);\r\n        }\r\n\r\n        // replace with fallback if translation is not available.\r\n        if (Objects.equals(phrase, \"\") || Objects.equals(phrase, \" \")) phrase = fallbackPhrases.getOrDefault(key, \"\");\r\n        // replace with placeholder if fallback is not available.\r\n        if (Objects.equals(phrase, \"\") || Objects.equals(phrase, \" \")) phrase = \"%\" + key + \"%\";\r\n\r\n        return ChatColor.translateAlternateColorCodes('&', phrase);\r\n    }\r\n\r\n    public void sendPhrase(CommandSender sender, String key) {\r\n        this.sendPhrase(sender, key, null);\r\n    }\r\n\r\n    public void sendPhrase(CommandSender sender, String key, Map<String, String> replacements) {\r\n        Player player = null;\r\n\r\n        if(sender instanceof Player) {\r\n            player = (Player)sender;\r\n        }\r\n\r\n        sender.sendMessage(this.getPhrase(key, player, replacements));\r\n    }\r\n\r\n    public void sendPhrase(Player player, String key) {\r\n        this.sendPhrase(player, key, null);\r\n    }\r\n\r\n    public void sendPhrase(Player player, String key, Map<String, String> replacements) {\r\n        player.sendMessage(this.getPhrase(key, player, replacements));\r\n    }\r\n\r\n    public void sendBlank(Player player) {\r\n        player.sendMessage(\"   \");\r\n    }\r\n\r\n    public void sendSeperator(Player player, ChatColor color) {\r\n        player.sendMessage(color + (ChatColor.STRIKETHROUGH + StringUtils.repeat(\" \", 80)));\r\n    }\r\n\r\n    public String parseString(String string) {\r\n        if(this.iaFeature != null) {\r\n            string = this.iaFeature.formatString(null, string);\r\n        }\r\n\r\n        return ChatColor.translateAlternateColorCodes('&', string);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/stemcraft/manager/SMLanguageManager.java b/src/main/java/com/stemcraft/manager/SMLanguageManager.java
+--- a/src/main/java/com/stemcraft/manager/SMLanguageManager.java	
++++ b/src/main/java/com/stemcraft/manager/SMLanguageManager.java	
+@@ -1,10 +1,15 @@
+ package com.stemcraft.manager;
+ 
++import java.lang.reflect.Constructor;
+ import java.util.HashMap;
++import java.util.List;
+ import java.util.Map;
+ import java.util.Objects;
+ 
+ import com.stemcraft.SMConfig;
++import com.stemcraft.feature.SMFeature;
++import com.stemcraft.translations.SMEnglishAU;
++import com.stemcraft.translations.SMTranslation;
+ import org.apache.commons.lang.StringUtils;
+ import org.bukkit.ChatColor;
+ import org.bukkit.command.CommandSender;
+@@ -16,10 +21,32 @@
+     private Map<String, String> fallbackPhrases = new HashMap<>();
+     private String[] languages = {};
+     // Don't assign this to a value unless you wish to refactor this further.
+-    private Map<String, SMConfig> languageConfigs = new HashMap<>() {};
++    private Map<String, SMTranslation> languageClasses = new HashMap<>() {};
+     private String language;
+     SMItemsAdder iaFeature = null;
+ 
++    public SMLanguageManager() {
++        // we have to do this here during init, because hashmaps can't be initialized like in C# with dictionaries.
++        // so we have to do this manually.
++
++        List<Class<?>> classFeatureList = this.plugin.getClassList("com/stemcraft/translations/", false);
++
++        for (Class<?> classFeatureItem : classFeatureList) {
++            try {
++                Constructor<?> constructor = classFeatureItem.getDeclaredConstructor();
++                SMTranslation translationInstance = (SMTranslation)constructor.newInstance();
++
++                String translationLanguage = translationInstance.getLanguage();
++
++                if(!Objects.equals(translationLanguage, "invalid")) {
++                    this.languageClasses.put(translationLanguage, translationInstance);
++                }
++            } catch (Exception e) {
++                e.printStackTrace();
++            }
++        }
++    }
++
+     private void registerDefaultPhrases() {
+         this.registerPhrase("CMD_NO_PERMISSION", ":warning_red: &cYou don't have permission to use this command");
+         this.registerPhrase("CMD_ONLY_PLAYERS", "This command can only be run by a player");
+@@ -29,48 +56,21 @@
+         this.registerPhrase("CMD_OPTION_REQUIRED", ":warning_red: &cAn option is required");
+     }
+ 
+-    private Boolean checkForBrokenLanguageConfig(SMConfig languageConfig) {
+-        if (languageConfig.isLoaded() == false) {
+-            // Should never be the case.
+-            this.plugin.getLogger().warning("Language Config passed to 'checkForBrokenLanguageConfig' without loading first.");
+-            languageConfig.loadConfig();
+-        }
+-
+-        return languageConfig.getBoolValue("is-valid-language-file", false);
+-    }
+-
+-    private void getLanguagesConfig() {
+-        for (String language : languages) {
+-            if (languageConfigs.get(language) != null) {
+-                plugin.getLogger().config("Refusing to load language " + language + "twice.");
+-            }
+-
+-            SMConfig currentLanguageConfig = new SMConfig(this.plugin, "lang." + language);
+-            currentLanguageConfig.loadConfig();
+-
+-            if (checkForBrokenLanguageConfig(currentLanguageConfig)) {
+-                languageConfigs.put(language, currentLanguageConfig);
+-            } else {
+-                plugin.getLogger().config("Invalid language selected: " + language + ". The selected language will not be loaded.");
+-            }
+-        }
+-    }
+-
+     private void initializeLanguageConfigs() {
+         SMConfig globalConfig = this.plugin.getConfigManager().getConfig();
+         // TODO: Implement arrays in SMConfig and this.
+         // TODO: Registering languages using a system like this is suboptimal.
+-        String languagesSelected = globalConfig.registerValue("languages-enabled", "en", "Languages for SMConfig. Separate languages by a space.");
++        String languagesSelected = globalConfig.registerValue("languages-enabled", "en-au", "Languages for STEMCraft. Separate languages by a space.");
+         languages = languagesSelected.split(" ");
+ 
+-        if (languages.length == 0) {
+-            plugin.getLogger().config("No languages were selected in the 'languages-enabled' config.");
+-            plugin.getLogger().config("The default configuration will now default to 'en'.");
+-            plugin.getLogger().config("If this is not want you want, select a language in 'languages-enabled'.");
+-            languages = new String[] { "en" };
++        if (languages.length == 0 || (languages[0].length() != 4)) {
++            plugin.getLogger().config("No languages were selected or an invalid configuration was detected in the 'languages-enabled' config.");
++            plugin.getLogger().config("The configuration will now default to 'en-au'.");
++            plugin.getLogger().config("If this is not want you want, select a language or repair the config in 'languages-enabled'.");
++            languages = new String[] { "en-au" };
+         }
+ 
+-        getLanguagesConfig();
++        language = languages[0];
+     }
+ 
+     @Override
+@@ -103,7 +103,10 @@
+     }
+ 
+     public String getPhrase(String key, Player player, Map<String, String> replacements) {
+-        String phrase = languageConfigs.get(language).getValue(key, "");
++        boolean isFallback = false;
++        boolean isPlaceholder = false;
++
++        String phrase = languageClasses.get(language).getValue(key, "");
+ 
+         if(this.iaFeature != null) {
+             phrase = this.iaFeature.formatString(player, phrase);
+@@ -122,9 +125,17 @@
+         }
+ 
+         // replace with fallback if translation is not available.
+-        if (Objects.equals(phrase, "") || Objects.equals(phrase, " ")) phrase = fallbackPhrases.getOrDefault(key, "");
++        if (Objects.equals(phrase, "") || Objects.equals(phrase, " ")) { phrase = fallbackPhrases.getOrDefault(key, ""); isFallback = true; }
+         // replace with placeholder if fallback is not available.
+-        if (Objects.equals(phrase, "") || Objects.equals(phrase, " ")) phrase = "%" + key + "%";
++        if (Objects.equals(phrase, "") || Objects.equals(phrase, " ")) { phrase = "%" + key + "%"; isPlaceholder = true; }
++
++        // provide warnings if using fallbacks or placeholders
++        if (isFallback == true) {
++            this.plugin.getLogger().warning("Using fallback for key '" + key + "'. The fallback is '" + phrase + "'.");
++        }
++        if (isPlaceholder == true) {
++            this.plugin.getLogger().severe("Using placeholder for key '" + key + "'. Any features that rely on this message might be broken.");
++        }
+ 
+         return ChatColor.translateAlternateColorCodes('&', phrase);
+     }
+Index: src/main/java/com/stemcraft/translations/SMEnglishAU.java
+===================================================================
+diff --git a/src/main/java/com/stemcraft/translations/SMEnglishAU.java b/src/main/java/com/stemcraft/translations/SMEnglishAU.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/stemcraft/translations/SMEnglishAU.java	
+@@ -0,0 +1,21 @@
++package com.stemcraft.translations;
++
++import java.util.HashMap;
++
++public class SMEnglishAU implements SMTranslation {
++    public HashMap<String, String> translations = new HashMap<>() {};
++    public String language = "en-au";
++
++    public HashMap<String, String> getTranslations() {
++        return translations;
++    }
++
++    public String getLanguage() {
++        return language;
++    }
++
++    public SMEnglishAU() {
++        // put translations here
++        translations.put("COOL_TEST", "This is translated cool text. This is certified COOL.");
++    }
++}
+Index: src/main/java/com/stemcraft/translations/SMTranslation.java
+===================================================================
+diff --git a/src/main/java/com/stemcraft/translations/SMTranslation.java b/src/main/java/com/stemcraft/translations/SMTranslation.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/stemcraft/translations/SMTranslation.java	
+@@ -0,0 +1,11 @@
++package com.stemcraft.translations;
++
++import java.util.HashMap;
++
++public interface SMTranslation {
++    HashMap<String, String> translations = new HashMap<>();
++    String language = "invalid";
++
++    HashMap<String, String> getTranslations();
++    String getLanguage();
++}

@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_TEST_SOURCES" value="false" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ac17dfca-8610-4022-a71c-b4f5ec09ab86" name="Changes" comment="delete files, moved over to a different branch." />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/gh-issue-forms" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2UrFOaGKSTtdXC0UpCONvZDmJvq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/STEMMechanics/STEMCraft/.github/ISSUE_TEMPLATE&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\STEMMechanics\STEMCraft\.github\ISSUE_TEMPLATE" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Compound.Build">
+    <configuration name="Build" type="CompoundRunConfigurationType">
+      <toRun name="STEMCraft [package]" type="MavenRunConfiguration" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Run Server" type="CompoundRunConfigurationType">
+      <toRun name="Build" type="CompoundRunConfigurationType" />
+      <toRun name="Run MC Server" type="ShConfigurationType" />
+      <method v="2" />
+    </configuration>
+    <configuration name="STEMCraft [compile]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="compile" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="STEMCraft [package]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="package" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="STEMCraft [test]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="test" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="Run MC Server" type="ShConfigurationType">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="false" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/../TestEnv/server.ps1" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="false" />
+      <option name="INTERPRETER_PATH" value="C:/Program Files/PowerShell/7/pwsh.exe" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Compound.Run Server" />
+      <item itemvalue="Compound.Build" />
+      <item itemvalue="Maven.STEMCraft [compile]" />
+      <item itemvalue="Maven.STEMCraft [test]" />
+      <item itemvalue="Maven.STEMCraft [package]" />
+      <item itemvalue="Shell Script.Run MC Server" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ac17dfca-8610-4022-a71c-b4f5ec09ab86" name="Changes" comment="" />
+      <created>1693689764267</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1693689764267</updated>
+    </task>
+    <task id="LOCAL-00001" summary="added some language loading features.&#10;not complete and not tested.">
+      <option name="closed" value="true" />
+      <created>1693694643706</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1693694643706</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Fix usage of System.Out">
+      <option name="closed" value="true" />
+      <created>1693702116178</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1693702116178</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Replace old phrasesMap with fallbackPhrases.&#10;Also add invalid configuration checking.">
+      <option name="closed" value="true" />
+      <created>1693704117617</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1693704117617</updated>
+    </task>
+    <task id="LOCAL-00004" summary="See reviews in https://github.com/STEMMechanics/STEMCraft/pull/2">
+      <option name="closed" value="true" />
+      <created>1693704468953</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1693704468953</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Bump version. See https://github.com/STEMMechanics/STEMCraft/pull/2#pullrequestreview-1608398653">
+      <option name="closed" value="true" />
+      <created>1693704495793</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1693704495793</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add no-header registration functions">
+      <option name="closed" value="true" />
+      <created>1693709814252</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1693709814253</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Build scaffolding&#10;NOT READY FOR PROD&#10;OBVIOUSLY">
+      <option name="closed" value="true" />
+      <created>1693784040555</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1693784040555</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Checking Code">
+      <option name="closed" value="true" />
+      <created>1693814031032</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1693814031032</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Bump version">
+      <option name="closed" value="true" />
+      <created>1693814127994</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1693814127994</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Beta set language command">
+      <option name="closed" value="true" />
+      <created>1695256985804</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1695256985804</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Convert config() messages to warning() as those don't display in the Minecraft console.">
+      <option name="closed" value="true" />
+      <created>1695257052248</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1695257052248</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add init code.">
+      <option name="closed" value="true" />
+      <created>1695257086729</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1695257086729</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Remove init code in constructor.&#10;This was removed as it causes an exception to be thrown, probably because the plugin hasn't finished initalizing yet.">
+      <option name="closed" value="true" />
+      <created>1695257131866</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1695257131866</updated>
+    </task>
+    <task id="LOCAL-00014" summary="&#10;Add Dimension Hub Command support">
+      <option name="closed" value="true" />
+      <created>1695265985216</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1695265985216</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Add default dimension commands">
+      <option name="closed" value="true" />
+      <created>1695266011787</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1695266011787</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Version bump">
+      <option name="closed" value="true" />
+      <created>1695266081660</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1695266081660</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Submit test issue template.">
+      <option name="closed" value="true" />
+      <created>1699315022122</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1699315022122</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Submit test issue template.">
+      <option name="closed" value="true" />
+      <created>1699315624979</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1699315624979</updated>
+    </task>
+    <task id="LOCAL-00019" summary="AE">
+      <option name="closed" value="true" />
+      <created>1699315809802</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1699315809802</updated>
+    </task>
+    <task id="LOCAL-00020" summary="add ticket proxies">
+      <option name="closed" value="true" />
+      <created>1699317146193</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1699317146193</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fix feature tag name">
+      <option name="closed" value="true" />
+      <created>1699317233387</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1699317233387</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Add generic feature and bug report templates">
+      <option name="closed" value="true" />
+      <created>1699318767942</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1699318767942</updated>
+    </task>
+    <task id="LOCAL-00023" summary="migrate templates">
+      <option name="closed" value="true" />
+      <created>1699319272375</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1699319272375</updated>
+    </task>
+    <task id="LOCAL-00024" summary="delete files, moved over to a different branch.">
+      <option name="closed" value="true" />
+      <created>1699319320063</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1699319320063</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
+    <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+    <option featureType="dependencySupport" implementationName="java:org.spigotmc:spigot-api" />
+    <option featureType="dependencySupport" implementationName="java:net.kyori:adventure-api" />
+    <option featureType="dependencySupport" implementationName="executable:kubectl" />
+    <option featureType="dependencySupport" implementationName="java:org.bukkit:bukkit" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="feature/new-language-system" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/new-language-system" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fix usage of System.Out" />
+    <MESSAGE value="Replace old phrasesMap with fallbackPhrases.&#10;Also add invalid configuration checking." />
+    <MESSAGE value="See reviews in https://github.com/STEMMechanics/STEMCraft/pull/2" />
+    <MESSAGE value="Bump version. See https://github.com/STEMMechanics/STEMCraft/pull/2#pullrequestreview-1608398653" />
+    <MESSAGE value="Add no-header registration functions" />
+    <MESSAGE value="Add English translation file" />
+    <MESSAGE value="Build scaffolding&#10;NOT READY FOR PROD&#10;OBVIOUSLY" />
+    <MESSAGE value="Test writing!" />
+    <MESSAGE value="Checking Code + Boilerplate" />
+    <MESSAGE value="Checking Code" />
+    <MESSAGE value="Bump version" />
+    <MESSAGE value="Beta set language command" />
+    <MESSAGE value="Convert config() messages to warning() as those don't display in the Minecraft console." />
+    <MESSAGE value="Add init code." />
+    <MESSAGE value="Remove init code in constructor.&#10;This was removed as it causes an exception to be thrown, probably because the plugin hasn't finished initalizing yet." />
+    <MESSAGE value="&#10;Add Dimension Hub Command support" />
+    <MESSAGE value="Add default dimension commands" />
+    <MESSAGE value="Version bump" />
+    <MESSAGE value="Submit test issue template." />
+    <MESSAGE value="AE" />
+    <MESSAGE value="add ticket proxies" />
+    <MESSAGE value="fix feature tag name" />
+    <MESSAGE value="Add generic feature and bug report templates" />
+    <MESSAGE value="migrate templates" />
+    <MESSAGE value="delete files, moved over to a different branch." />
+    <option name="LAST_COMMIT_MESSAGE" value="delete files, moved over to a different branch." />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
