@@ -29,14 +29,7 @@ jobs:
 
       - name: Extract Release Notes
         id: release-notes
-        run: |
-          TAG_NAME=${GITHUB_REF#refs/tags/v}  # Strips 'refs/tags/v' from the tag name
-          ESCAPED_TAG_NAME=$(echo $TAG_NAME | sed 's/[][*^$.\]/\\&/g')  # Escapes regex characters
-          RELEASE_NOTES=$(awk "/^## \\[${ESCAPED_TAG_NAME}\\]/,/^## /{if (!/^## \\[${ESCAPED_TAG_NAME}\\]/ && !/^## /)print}" README.md)
-          RELEASE_NOTES="${RELEASE_NOTES//'%'/'%25'}"
-          RELEASE_NOTES="${RELEASE_NOTES//$'\n'/'%0A'}"
-          RELEASE_NOTES="${RELEASE_NOTES//$'\r'/'%0D'}"
-          echo "notes::$RELEASE_NOTES" >> $GITHUB_OUTPUT
+        run: bash ./extractReleaseNotes.sh -xe
 
         # Reason for getting rid of "::set:output": GitHub has deprecated "::set:output",
         # see https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/ for more information.
