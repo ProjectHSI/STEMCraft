@@ -3,10 +3,13 @@ name: Maven Build and Release
 on:
   push:
     branches:
-      - "*" # Currently set to all branches because of me needing to test the actual code.
+      - "**" # Currently set to all branches because of me needing to test the actual code.
             # Will change later when I or James finalise this.
     tags:
-      - "v*"
+      - "v**"
+
+  workflow_dispatch:
+    branches: "**"
 
 jobs:
   build-and-release:
