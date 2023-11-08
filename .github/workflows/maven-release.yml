@@ -3,9 +3,10 @@ name: Maven Build and Release
 on:
   push:
     branches:
-      - main
+      - "*" # Currently set to all branches because of me needing to test the actual code.
+            # Will change later when I or James finalise this.
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   build-and-release:
